@@ -100,3 +100,7 @@ Editer le fichier android/app/build.gradle (MAIS PAS android/build.gradle)
 et ajouter en bas : 
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
+Gestion des monnaies en fonction des langues, installer Intl
+
+$ npm install intl
