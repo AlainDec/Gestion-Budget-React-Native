@@ -114,3 +114,7 @@ import 'intl/locale-data/jsonp/fr';
 Gestion des formulaires avec React Hook Form
 
 $ npm install react-hook-form
+
+Gestion des résultts des formulairs avec YUP
+
+$ npm i yup
