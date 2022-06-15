@@ -78,7 +78,7 @@ $ npm install @react-navigation/bottom-tabs
 
 $ npm install --save react-native-vector-icons
 
-Choisir une icône : https://ionic.io/ionicons
+Choisir une icône : https://ionic.io/ionicons  ou encore pour plus de choix : https://oblador.github.io/react-native-vector-icons/
 
 Formik pour les formulaires :
 
