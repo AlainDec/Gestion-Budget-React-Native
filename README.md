@@ -104,3 +104,13 @@ apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 Gestion des monnaies en fonction des langues, installer Intl
 
 $ npm install intl
+
+et les importer comme ceci :
+
+import 'intl';
+
+import 'intl/locale-data/jsonp/fr';
+
+Gestion des formulaires avec React Hook Form
+
+$ npm install react-hook-form
