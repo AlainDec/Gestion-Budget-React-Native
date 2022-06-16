@@ -115,6 +115,6 @@ Gestion des formulaires avec React Hook Form
 
 $ npm install react-hook-form
 
-Gestion des résultts des formulairs avec YUP
+Gestion des règles de validations des formulaires avec YUP
 
 $ npm i yup
