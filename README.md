@@ -122,3 +122,7 @@ $ npm i yup
 Yup a besoin d'un resolver et donc de sa librairie :
 
 $ npm install @hookform/resolvers
+
+Ajout du datepicker pour saisir la date des opérations
+
+$ npm i react-native-modal-datetime-picker
