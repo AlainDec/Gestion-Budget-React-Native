@@ -118,3 +118,7 @@ $ npm install react-hook-form
 Gestion des règles de validations des formulaires avec YUP
 
 $ npm i yup
+
+Yup a besoin d'un resolver et donc de sa librairie :
+
+$ npm install @hookform/resolvers
