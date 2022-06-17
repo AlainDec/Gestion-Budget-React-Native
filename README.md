@@ -117,4 +117,8 @@ $ npm install @hookform/resolvers
 
 Ajout du datepicker pour saisir la date des opérations
 
-$ npm i react-native-modal-datetime-picker
+$ npm i @react-native-community/datetimepicker
+
+Ajout du champ input select/option
+
+$ npm i @react-native-picker/picker
