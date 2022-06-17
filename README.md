@@ -122,3 +122,9 @@ $ npm i @react-native-community/datetimepicker
 Ajout du champ input select/option
 
 $ npm i @react-native-picker/picker
+
+Ajout de la librairie graphique Chart Kit
+
+$ npm i react-native-chart-kit
+
+$ npm i react-native-svg
