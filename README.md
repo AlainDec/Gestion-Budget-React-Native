@@ -80,14 +80,6 @@ $ npm install --save react-native-vector-icons
 
 Choisir une icône : https://ionic.io/ionicons  ou encore pour plus de choix : https://oblador.github.io/react-native-vector-icons/
 
-Formik pour les formulaires :
-
-$ npm install formik --save
-
-Yup pour les validations de formulaires, complémentaire à Formik
-
-$ npm install yup --save
-
 Problèmes de compilation, ajout des installations suivantes :
 
 $ npm install @react-navigation/native
