@@ -8,10 +8,11 @@ import {
   ContributionGraph,
   StackedBarChart
 } from "react-native-chart-kit";
+import { data } from '../datas/data';
 
 const screenWidth = Dimensions.get("window").width;
 
-const data = [
+const dataO = [
   {
     name: "Seoul",
     population: 21500000,
@@ -109,7 +110,7 @@ export const StatsScreen: React.FC<any> = ({ navigation }: any): JSX.Element => 
       />
 
       <PieChart
-        data={data}
+        data={dataO}
         width={screenWidth}
         height={250}
         chartConfig={chartConfig}

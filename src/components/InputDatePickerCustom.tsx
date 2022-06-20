@@ -42,7 +42,7 @@ export const InputDatePickerCustom: React.FC<InputCustomProps> = ({
             <TextInput
                 style={[styles.inputBase, error ? styles.inputError : styles.input]}
                 placeholder={placeholder}
-                value={value}
+                value={date}
                 onChangeText={onChangeDateCallBack}
                 onBlur={onBlur}
                 secureTextEntry={password}
