@@ -2,53 +2,50 @@ import { View, Text, Dimensions } from 'react-native';
 import * as  React from 'react';
 import {
   LineChart,
-  BarChart,
   PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart
 } from "react-native-chart-kit";
 import { data } from '../datas/data';
+import { Item } from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
+import { IIncomesExpenses } from '../interfaces/IData';
+import { convertDate, currencyToNumber, numberToCurrency } from '../utils/convert';
+import { getFilteredDatas, getTotalIncomes, getTotalExpenses } from '../utils/filterDatas';
 
 const screenWidth = Dimensions.get("window").width;
 
-const dataO = [
-  {
-    name: "Seoul",
-    population: 21500000,
-    color: "rgba(131, 167, 234, 1)",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-  {
-    name: "Toronto",
-    population: 2800000,
-    color: "#F00",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-  {
-    name: "Beijing",
-    population: 527612,
-    color: "red",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-  {
-    name: "New York",
-    population: 8538000,
-    color: "#ffffff",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-  {
-    name: "Moscow",
-    population: 11920000,
-    color: "rgb(0, 0, 255)",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  }
-];
+const datas: IIncomesExpenses[] = getFilteredDatas(data, '18c79361-d05f-437b-9909-685db8d4910a');
+
+const getRandomColor = () => Math.round(Math.random() * 255);
+
+type IOperation = 'income' | 'expense';
+
+interface IPieChart {
+  name: string;
+  amount: number;
+  color: string;
+  legendFontColor: string;
+  legendFontSize: number;
+}
+// Capture les data filtrées
+const getDataPieChart = (datas: IIncomesExpenses[], operation: IOperation): IPieChart[] => {
+  return datas.filter(value => {
+    if (value.type === operation) {
+      return value;
+    }
+  }).map(value => {
+    let item = {
+      name: value.category,
+      amount: Math.round(currencyToNumber(value.amount)),
+      color: "rgba(" + getRandomColor() + ", " + getRandomColor() + ", " + getRandomColor() + ", 1)",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 15
+    }
+    return item;
+  })
+}
+
+const dataPieChartIncomes = getDataPieChart(datas, 'income');
+const dataPieChartExpenses = getDataPieChart(datas, 'expense');
+
 
 const chartConfig = {
   backgroundGradientFrom: "#1E2923",
@@ -63,8 +60,32 @@ const chartConfig = {
 
 export const StatsScreen: React.FC<any> = ({ navigation }: any): JSX.Element => {
   return (
-    <View>
+    <View style={{ flex: 1 }}>
 
+      <PieChart
+        data={dataPieChartIncomes}
+        width={screenWidth}
+        height={200}
+        chartConfig={chartConfig}
+        accessor={"amount"}
+        backgroundColor={"transparent"}
+        paddingLeft={"0"}
+        center={[10, 10]}
+        absolute
+      />
+
+      <PieChart
+        data={dataPieChartExpenses}
+        width={screenWidth}
+        height={200}
+        chartConfig={chartConfig}
+        accessor={"amount"}
+        backgroundColor={"transparent"}
+        paddingLeft={"0"}
+        center={[10, 10]}
+        absolute
+      />
+      {/*
       <LineChart
         data={{
           labels: ["January", "February", "March", "April", "May", "June"],
@@ -108,19 +129,7 @@ export const StatsScreen: React.FC<any> = ({ navigation }: any): JSX.Element => 
           borderRadius: 16
         }}
       />
-
-      <PieChart
-        data={dataO}
-        width={screenWidth}
-        height={250}
-        chartConfig={chartConfig}
-        accessor={"population"}
-        backgroundColor={"transparent"}
-        paddingLeft={"15"}
-        center={[10, 10]}
-        absolute
-      />
-
+      */}
     </View>
   );
 }

@@ -16,7 +16,9 @@ type FormValues = {
   comment: string;
 }
 
-export const ExpenseScreen: React.FC<any> = ({ navigation }: any): JSX.Element => {
+export const ExpenseScreen: React.FC<any> = ({ navigation, route }: any): JSX.Element => {
+
+  const { userId } = route.params;
 
   const validationSchema = Yup.object({
     name: Yup.string().required('Veuillez saisir vos nom et prénom'),

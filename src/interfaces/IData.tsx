@@ -10,7 +10,7 @@ export interface IIncomes {
     amount: string,
     category: string,
     comments: string,
-    _id_income?: string
+    _id_income: string
 }
 
 export interface IExpenses {
@@ -18,5 +18,14 @@ export interface IExpenses {
     amount: string,
     category: string,
     comments: string,
-    _id_expense?: string
+    _id_expense: string
+}
+
+export interface IIncomesExpenses {
+    date: string,
+    amount: string,
+    category: string,
+    comments: string,
+    _id: string,
+    type:string
 }

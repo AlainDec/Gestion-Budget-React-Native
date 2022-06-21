@@ -6,11 +6,9 @@ import Moment from "moment";
 
 interface InputCustomProps {
     placeholder?: string;
-    value: string | number;
-    password?: boolean;
-    keyboard?: KeyboardTypeOptions;
-    onChangeDateCallBack: (value: string) => void;
-    onBlur?: () => void;
+    //value: string | number;
+    value: string;
+    onChangeDateCallBack: (date: string) => void;
     error?: boolean;
     errorDetails?: string;
 }
@@ -18,10 +16,7 @@ interface InputCustomProps {
 export const InputDatePickerCustom: React.FC<InputCustomProps> = ({
     placeholder,
     value,
-    password,
-    keyboard = 'default',
     onChangeDateCallBack,
-    onBlur,
     error = false,
     errorDetails,
 }) => {
@@ -33,8 +28,10 @@ export const InputDatePickerCustom: React.FC<InputCustomProps> = ({
     const hideDatePicker = () => setDatePickerVisibility(false);
     const [date, setDate] = useState<string | undefined>('');
     const onsubmit = (date: Date) => {
-        setDatePickerVisibility(false)
-        onChangeDateCallBack(Moment(date).format("DD/MM/YYYY"))
+        setDatePickerVisibility(false);
+        console.log( Moment(date).format("DD/MM/YYYY") );
+        setDate(Moment(date).format("DD/MM/YYYY"))
+        onChangeDateCallBack(Moment(date).format("DD/MM/YYYY"));
     }
 
     return (
@@ -44,11 +41,6 @@ export const InputDatePickerCustom: React.FC<InputCustomProps> = ({
                 placeholder={placeholder}
                 value={date}
                 onChangeText={onChangeDateCallBack}
-                onBlur={onBlur}
-                secureTextEntry={password}
-                keyboardType={keyboard}
-                // date
-                maxLength={10}
                 editable={false}
             />
             <Pressable onPress={() => { showDatePicker() }} style={styles.icon}>

@@ -17,7 +17,9 @@ type FormValues = {
   operation: 'income';
 }
 
-export const IncomeScreen: React.FC<any> = ({ navigation }: any): JSX.Element => {
+export const IncomeScreen: React.FC<any> = ({ navigation, route }: any): JSX.Element => {
+
+  const { userId } = route.params;
 
   const validationSchema = Yup.object({
     name: Yup.string().required('Veuillez saisir vos nom et prénom'),
@@ -40,7 +42,12 @@ export const IncomeScreen: React.FC<any> = ({ navigation }: any): JSX.Element =>
     defaultValues: { operation: 'income' } // utile pour simuler un champ hidden qui précise si je fais un income ou expense
   })
 
-  const onSubmit: any = (data: FormValues) => console.log(data);
+  const onSubmit: any = (data: FormValues) => {
+    console.log(data);
+    /*navigation.navigate('Comptes', {
+      datas: data
+    });*/
+  }
 
   return (
     <ScrollView style={styles.container}>
