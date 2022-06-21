@@ -134,3 +134,5 @@ Gérer les données via le SGBD Realm : https://realm.io/
 doc : https://www.mongodb.com/docs/realm/tutorial/?_ga=2.233929880.725042621.1655800794-244169423.1655800794
 doc 2 : https://github.com/realm/realm-js
 doc 3 : https://github.com/realm/realm-js/tree/master/packages/realm-react#readme
+
+$ npm install realm @realm/react
