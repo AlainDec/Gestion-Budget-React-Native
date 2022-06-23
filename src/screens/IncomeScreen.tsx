@@ -107,7 +107,7 @@ export const IncomeScreen: React.FC<any> = ({ navigation, route }: any): JSX.Ele
       <Controller
         control={control}
         rules={{ required: true }}
-        render={({ field: { onChange, onBlur, value }, fieldState: {error} }) => (
+        render={({ field: { onChange }, fieldState: {error} }) => (
           <InputSelectCustom
             errorDetails={error?.message}
             onChangeText={onChange}
