@@ -1,4 +1,3 @@
-import { IData, IExpenses, IIncomes, IIncomesExpenses } from '../interfaces/IData';
 import Moment from "moment"; // Moment(date).format("DD/MM/YYYY")
 
 
