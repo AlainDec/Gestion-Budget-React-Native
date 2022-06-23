@@ -140,3 +140,12 @@ doc 3 : https://github.com/realm/realm-js
 doc 4 : https://github.com/realm/realm-js/tree/master/packages/realm-react#readme
 
 $ npm install realm @realm/react
+
+Attention, à l'utilisation de Realm, l'asynchronisation de Await nécessite de modifier tsconfig.json :
+
+"target": "esnext",
+"module": "commonjs",
+
+deviennent :
+"target": "es2017",
+"module": "es2022",
