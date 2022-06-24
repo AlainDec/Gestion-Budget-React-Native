@@ -149,3 +149,13 @@ Attention, à l'utilisation de Realm, l'asynchronisation de Await nécessite de 
 deviennent :
 "target": "es2017",
 "module": "es2022",
+
+Utiliser la librairie Moment pour les dates, et timetone pour les convertion tz
+
+npm i moment
+
+npm i moment-timezone
+
+Dans le code :
+import Moment from "moment";
+import 'moment-timezone';
