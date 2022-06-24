@@ -20,6 +20,7 @@
     "@realm/react": "^0.3.1",
     "intl": "^1.2.5",
     "moment": "^2.29.3",
+    "moment-timezone": "^0.5.34",
     "react": "17.0.2",
     "react-hook-form": "^7.32.1",
     "react-native": "0.68.2",

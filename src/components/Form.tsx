@@ -3,6 +3,7 @@ import * as  React from 'react';
 import { InputCustom } from '../components/InputCustom';
 import { InputDatePickerCustom } from '../components/InputDatePickerCustom';
 import { InputSelectCustom } from '../components/InputSelectCustom';
+import { convertDate, convertDateUtz, currencyToNumber, numberToCurrency } from '../utils/convert';
 // Formulaire
 import { useForm, Controller } from "react-hook-form";
 import * as Yup from 'yup';
@@ -24,6 +25,7 @@ interface IForm {
 }
 
 // ------- Realm
+/*
 let realm;
 // Déclaration du schéma
 realm = new Realm({
@@ -52,15 +54,8 @@ realm.write( () => {
         operation: "income"
     })
 })
-// Lecture des données
-let realmRead = new Realm({ path: 'UserDatabase.realm'});
-var user_details = realmRead.objects('Operation');
-console.log(user_details);
+*/
 
-
-realm.write( () => {
-    realm.delete(user_details)
-})
 
 
 export const Form = ({ formType }:IForm) => {
@@ -83,10 +78,54 @@ export const Form = ({ formType }:IForm) => {
     const { control, handleSubmit, formState: { errors } } = useForm<FormValues>({
         mode: 'onBlur',
         resolver: yupResolver(validationSchema),
-        defaultValues: { operation: formType } // utile pour simuler un champ hidden qui précise si je fais un income ou expense
+        defaultValues: { 
+            operation: formType
+        } // utile pour simuler un champ hidden qui précise si je fais un income ou expense
     })
 
-    const onSubmit: any = (data: FormValues) => console.log(data);
+    const onSubmit: any = (data: FormValues) => {
+        console.log('---data----');
+        console.log(data);
+        let realm: Realm;
+        // Déclaration du schéma
+        realm = new Realm({
+            path: 'UserDatabase.realm',
+            schema: [
+                {
+                    name: "Operation",
+                    properties: {
+                        name: "string",
+                        amount: "string",
+                        date: "string",
+                        category: "string",
+                        comment: {type: "string", default: ''},
+                        operation: "string"
+                    }
+                }
+            ]
+        })
+        realm.write( () => {
+            realm.create('Operation', {
+                name: data.name,
+                amount: numberToCurrency(data.amount.toString()),
+                date: convertDateUtz(data.date),
+                category: data.category,
+                comment: data.comment,
+                operation: data.operation
+            })
+        })
+
+        // Lecture des données
+        let realmRead = new Realm({ path: 'UserDatabase.realm'});
+        var user_details = realmRead.objects('Operation');
+        console.log('----user_details----');
+        console.log(user_details);
+
+
+        realm.write( () => {
+            realm.delete(user_details)
+        })
+    }
 
     return (
         <ScrollView style={styles.container}>
