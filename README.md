@@ -5,35 +5,34 @@ INSTALLATION
 
 https://reactnative.dev/docs/environment-setup
 
-installer chocolatey : https://chocolatey.org/install#individual
+installer chocolatey : https://chocolatey.org/install#individual  
 pour cela il faut installer powershell, qui vérifie les soures provenant d'internet
-https://github.com/PowerShell/PowerShell/releases/tag/v7.2.4
+https://github.com/PowerShell/PowerShell/releases/tag/v7.2.4  
 revenir sur chocolatey, taper ligne de commande :
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
-retour sur https://reactnative.dev/docs/environment-setup
-installer nodeJs et JDK11
-choco install -y nodejs-lts openjdk11
+retour sur https://reactnative.dev/docs/environment-setup  
+installer nodeJs et JDK11  
+choco install -y nodejs-lts openjdk11  
 
-Vérifier version node :
+Vérifier version node :  
 $ node -v
 
-Vérifier version JDK :
+Vérifier version JDK :  
 $ java -version
 
-Installer Android Studio
-
-Configurer variables d'environnement :(variable système)
+Installer Android Studio  
+Configurer variables d'environnement :(variable système)  
 ANDROID_HOME : C:\Users\Geogalion\AppData\Local\Android\Sdk
 
-Ouvrir un nouveau powershell et vérifier que la variable ANDROID_HOME est présente :
+Ouvrir un nouveau powershell et vérifier que la variable ANDROID_HOME est présente :  
 $ Get-ChildItem -Path Env:\
 
-Ajouter dnas le path des variables windows : 
+Ajouter dnas le path des variables windows :  
 %LOCALAPPDATA%\Android\Sdk\platform-tools
 
-Créer le projet 
-$ npx react-native init p16GestionBudget --template react-native-template-typescript
+Créer le projet  
+$ npx react-native init p16GestionBudget --template react-native-template-typescript  
 $ cd p16GestionBudget 
 
 Lancer le projet
