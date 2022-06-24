@@ -35,25 +35,25 @@ Créer le projet
 $ npx react-native init p16GestionBudget --template react-native-template-typescript  
 $ cd p16GestionBudget 
 
-Lancer le projet
+Lancer le projet  
 $ npx react-native run-android
 
-Si erreur sur chemin de JAVA_HOME, le corriger, fermer powershell et relancer la ligne de commande.
-Si problème d'espace mémoire VM, le plus simple est de supprimer Java
+Si erreur sur chemin de JAVA_HOME, le corriger, fermer powershell et relancer la ligne de commande.  
+Si problème d'espace mémoire VM, le plus simple est de supprimer Java  
 Vérifier aussi les mises à jour Windows
 
-Pour lancer le projet sur émulateur :
+Pour lancer le projet sur émulateur :  
 - lancer android studio, créer un device qu'on choisi, et l'exécuter
-puis en ligne de commande :
-$ npx react-native start
-$ npx react-native run-android
+puis en ligne de commande :  
+$ npx react-native start  
+$ npx react-native run-android  
 On peut fermer android studio, l'émulateur est lancé.
 
-Pour lancer le projet sur téléphone :
+Pour lancer le projet sur téléphone :  
 - connecter le cable, accepté les indications sur le mobile
-Voir si le mobile est bien connecté :
-$ adb devices
-Lancer l'app :
+Voir si le mobile est bien connecté :  
+$ adb devices  
+Lancer l'app :  
 $ npx react-native run-android
 
 
@@ -71,71 +71,49 @@ AJOUT DES MODULES
 
 $ npm install @react-navigation/native @react-navigation/native-stack
 
-navigations avec la barre en bas
-
-$ npm install @react-navigation/bottom-tabs
-
+navigations avec la barre en bas  
+$ npm install @react-navigation/bottom-tabs  
 $ npm install --save react-native-vector-icons
 
-Choisir une icône : https://ionic.io/ionicons  ou encore pour plus de choix : https://oblador.github.io/react-native-vector-icons/
-
+Choisir une icône : https://ionic.io/ionicons  ou encore pour plus de choix : https://oblador.github.io/react-native-vector-icons/  
 Problèmes de compilation, ajout des installations suivantes :
+$ npm install @react-navigation/native  
+$ npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view  
+$ npm i --save-dev @types/react-native-vector-icons  
 
-$ npm install @react-navigation/native
-
-$ npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
-
-$ npm i --save-dev @types/react-native-vector-icons
-
-Editer le fichier android/app/build.gradle (MAIS PAS android/build.gradle)
-et ajouter en bas : 
-
+Editer le fichier android/app/build.gradle (MAIS PAS android/build.gradle) et ajouter en bas :  
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
-Gestion des monnaies en fonction des langues, installer Intl
-
+Gestion des monnaies en fonction des langues, installer Intl  
 $ npm install intl
 
-et les importer comme ceci :
-
-import 'intl';
-
+et les importer comme ceci :  
+import 'intl';  
 import 'intl/locale-data/jsonp/fr';
 
-Gestion des formulaires avec React Hook Form
-
+Gestion des formulaires avec React Hook Form  
 $ npm install react-hook-form
 
-Gestion des règles de validations des formulaires avec YUP
-
+Gestion des règles de validations des formulaires avec YUP  
 $ npm i yup
 
-Yup a besoin d'un resolver et donc de sa librairie :
-
+Yup a besoin d'un resolver et donc de sa librairie :  
 $ npm install @hookform/resolvers
 
-Ajout du datepicker pour saisir la date des opérations
-
+Ajout du datepicker pour saisir la date des opérations  
 $ npm i @react-native-community/datetimepicker
 
-Ajout du champ input select/option
-
+Ajout du champ input select/option  
 $ npm i @react-native-picker/picker
 
-Ajout de la librairie graphique Chart Kit
-
-$ npm i react-native-chart-kit
-
+Ajout de la librairie graphique Chart Kit  
+$ npm i react-native-chart-kit  
 $ npm i react-native-svg
 
-Gérer les données via le SGBD Realm : https://realm.io/
-
-doc : https://www.mongodb.com/docs/realm/tutorial/?_ga=2.233929880.725042621.1655800794-244169423.1655800794
-
-doc de base à suivre : https://www.mongodb.com/docs/realm/sdk/react-native/
-
-doc 3 : https://github.com/realm/realm-js
-
+Gérer les données via le SGBD Realm : https://realm.io/  
+doc : https://www.mongodb.com/docs/realm/tutorial/?_ga=2.233929880.725042621.1655800794-244169423.1655800794  
+doc de base à suivre : https://www.mongodb.com/docs/realm/sdk/react-native/  
+doc 3 : https://github.com/realm/realm-js  
 doc 4 : https://github.com/realm/realm-js/tree/master/packages/realm-react#readme
 
 $ npm install realm @realm/react
