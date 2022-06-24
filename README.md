@@ -131,9 +131,12 @@ deviennent :
 "module": "es2022",
 
 Utiliser la librairie Moment pour les dates, et timetone pour les convertion tz  
-npm i moment  
-npm i moment-timezone
+$ npm i moment  
+$ npm i moment-timezone
 
 Dans le code :  
 import Moment from "moment";  
 import 'moment-timezone';  
+
+Génération d'identifiants UUID V4  
+$ npm i uuidv4
