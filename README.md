@@ -141,18 +141,17 @@ doc 4 : https://github.com/realm/realm-js/tree/master/packages/realm-react#readm
 
 $ npm install realm @realm/react
 
-Attention, à l'utilisation de Realm, l'asynchronisation de Await nécessite de modifier tsconfig.json :
-
-"target": "esnext",
+Attention, à l'utilisation de Realm, l'asynchronisation de Await nécessite de modifier tsconfig.json :<br />
+"target": "esnext",<br />
 "module": "commonjs",
 
-deviennent :
-"target": "es2017",
+deviennent :<br />
+"target": "es2017",<br />
 "module": "es2022",
 
-Utiliser la librairie Moment pour les dates, et timetone pour les convertion tz__
-npm i moment__
-npm i moment-timezone__
+Utiliser la librairie Moment pour les dates, et timetone pour les convertion tz<br />
+npm i moment<br />
+npm i moment-timezone
 
 Dans le code :<br />
 import Moment from "moment";<br />
