@@ -139,4 +139,4 @@ import Moment from "moment";
 import 'moment-timezone';  
 
 Génération d'identifiants UUID V4  
-$ npm i uuidv4
+$ npm i react-native-uuid
