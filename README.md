@@ -60,14 +60,16 @@ $ npx react-native run-android
 AJOUT DES MODULES
 -----------------
 
->   module.exports = {
->     presets: ['module:metro-react-native-babel-preset'],
->     env: {
->       production: {
->         plugins: ['react-native-paper/babel'],
->       },
->     },
->   };
+```
+module.exports = {
+  presets: ['module:metro-react-native-babel-preset'],
+  env: {
+    production: {
+      plugins: ['react-native-paper/babel'],
+    },
+  },
+};
+```
 
 $ npm install @react-navigation/native @react-navigation/native-stack
 
