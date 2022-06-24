@@ -94,7 +94,8 @@ import 'intl';
 import 'intl/locale-data/jsonp/fr';
 
 Gestion des formulaires avec React Hook Form  
-$ npm install react-hook-form
+$ npm install react-hook-form  
+un bon tuto vidéo : https://www.youtube.com/watch?v=6DRAg26QtPI&list=PLpepLKamtPjh-xbBONWs42XNNSbtz3VGc&index=7&ab_channel=WawaSensei
 
 Gestion des règles de validations des formulaires avec YUP  
 $ npm i yup
