@@ -150,12 +150,10 @@ deviennent :
 "target": "es2017",
 "module": "es2022",
 
-Utiliser la librairie Moment pour les dates, et timetone pour les convertion tz
+Utiliser la librairie Moment pour les dates, et timetone pour les convertion tz__
+npm i moment__
+npm i moment-timezone__
 
-npm i moment
-
-npm i moment-timezone
-
-Dans le code :
-import Moment from "moment";
-import 'moment-timezone';
+Dans le code :<br />
+import Moment from "moment";<br />
+import 'moment-timezone';<br />
