@@ -94,7 +94,8 @@ import 'intl';
 import 'intl/locale-data/jsonp/fr';
 
 Gestion des formulaires avec React Hook Form  
-$ npm install react-hook-form
+$ npm install react-hook-form  
+un bon tuto vidéo : https://www.youtube.com/watch?v=6DRAg26QtPI&list=PLpepLKamtPjh-xbBONWs42XNNSbtz3VGc&index=7&ab_channel=WawaSensei
 
 Gestion des règles de validations des formulaires avec YUP  
 $ npm i yup
@@ -116,7 +117,8 @@ Gérer les données via le SGBD Realm : https://realm.io/
 doc : https://www.mongodb.com/docs/realm/tutorial/?_ga=2.233929880.725042621.1655800794-244169423.1655800794  
 doc de base à suivre : https://www.mongodb.com/docs/realm/sdk/react-native/  
 doc 3 : https://github.com/realm/realm-js  
-doc 4 : https://github.com/realm/realm-js/tree/master/packages/realm-react#readme
+doc 4 : https://github.com/realm/realm-js/tree/master/packages/realm-react#readme  
+Les exemples sur lesquels je me suis appuyé: https://aboutreact.com/example-of-realm-database-in-react-native/
 
 $ npm install realm @realm/react
 
@@ -129,9 +131,12 @@ deviennent :
 "module": "es2022",
 
 Utiliser la librairie Moment pour les dates, et timetone pour les convertion tz  
-npm i moment  
-npm i moment-timezone
+$ npm i moment  
+$ npm i moment-timezone
 
 Dans le code :  
 import Moment from "moment";  
 import 'moment-timezone';  
+
+Génération d'identifiants UUID V4  
+$ npm i react-native-uuid
