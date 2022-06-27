@@ -76,6 +76,14 @@ console.log(uuid.v4());
             ],
             deleteRealmIfMigrationNeeded: true
         })
+
+        let config = realm.Configuration(
+            schemaVersion: 0,
+            deleteRealmIfMigrationNeeded: true
+          )
+          realm.Configuration.defaultConfiguration = config
+
+
         realm.write( () => {
             realm.create('Operation', {
                 //name: data.name,
