@@ -26,8 +26,10 @@ interface IForm {
     formType: 'income' | 'expense';
 }
 
-export const Form = ({ formType }:IForm) => {
-console.log(uuid.v4());
+
+
+export const Form = ({ formType }: IForm) => {
+    console.log(uuid.v4());
     const validationSchema = Yup.object({
         name: Yup.string().required('Veuillez saisir vos nom et prénom'),
         amount: Yup.number().required('Veuillez saisir un montant'),
@@ -46,7 +48,7 @@ console.log(uuid.v4());
     const { control, handleSubmit, formState: { errors } } = useForm<FormValues>({
         mode: 'onBlur',
         resolver: yupResolver(validationSchema),
-        defaultValues: { 
+        defaultValues: {
             operation: formType
         } // utile pour simuler un champ hidden qui précise si je fais un income ou expense
     })
@@ -55,36 +57,31 @@ console.log(uuid.v4());
         console.log('---data----');
         console.log(data);
         let realm: Realm;
+
+
+        // Ouverture Realm
+        const Schema = {
+            // properties comment : ajout valeur par défaut car si cette propriété
+            // n'est pas renseignée elle est absente de data
+            name: "Operation",
+            properties: {
+                //name: "string",
+                _id: "string",
+                amount: "string",
+                date: "string",
+                category: "string",
+                comment: { type: "string", default: '' },
+                type: "string",
+            },
+        };
+        
         // Déclaration du schéma
         realm = new Realm({
             path: 'UserDatabase.realm',
-            schema: [
-                {
-                    // properties comment : ajout valeur par défaut car si cette propriété
-                    // n'est pas renseignée elle est absente de data
-                    name: "Operation",
-                    properties: {
-                        //name: "string",
-                        _id: "string",
-                        amount: "string",
-                        date: "string",
-                        category: "string",
-                        comment: {type: "string", default: ''},
-                        type: "string"
-                    }
-                }
-            ],
-            deleteRealmIfMigrationNeeded: true
+            schema: [Schema]
         })
 
-        let config = realm.Configuration(
-            schemaVersion: 0,
-            deleteRealmIfMigrationNeeded: true
-          )
-          realm.Configuration.defaultConfiguration = config
-
-
-        realm.write( () => {
+        realm.write(() => {
             realm.create('Operation', {
                 //name: data.name,
                 _id: uuid.v4(),
@@ -97,19 +94,19 @@ console.log(uuid.v4());
         })
 
         // Lecture des données
-        let realmRead = new Realm({ path: 'UserDatabase.realm'});
+        let realmRead = new Realm({ path: 'UserDatabase.realm' });
         var user_details = realmRead.objects('Operation');
         console.log('----user_details----');
         console.log(user_details);
 
         realm.close();
 
-/*
-        // vider la BDD
-        realm.write( () => {
-            realm.delete(user_details)
-        })
-        */
+        /*
+                // vider la BDD
+                realm.write( () => {
+                    realm.delete(user_details)
+                })
+                */
     }
 
     return (
