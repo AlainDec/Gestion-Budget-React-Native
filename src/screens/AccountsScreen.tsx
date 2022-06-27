@@ -11,29 +11,13 @@ import { getFilteredDatas, getTotalIncomes, getTotalExpenses } from '../utils/fi
 
 export const AccountsScreen: React.FC<any> = ({ navigation, route }: any): JSX.Element => {
 
-    console.log("accounts");
-    //console.log(route.params);
-    //const { date, amount, category, comments, _id, type } = route.params;
-
     // Récupère les données incomes et expenses associées à un user
     // flat l'ensemble et tri par date desc.
     // opération à faire au préalable afin de pouvoir faire 
     // un map final sur ce tableau reconstitué et trié.
     let datas: IIncomesExpenses[] = getFilteredDatas(data, '18c79361-d05f-437b-9909-685db8d4910a');
 
-    // Ajout de l'opération si existante
-    /*
-    if (route.params) {
-        datas = [...datas, {
-            "date": date,
-            "amount": amount,
-            "category": category,
-            "comments": comments,
-            "_id": _id,
-            "type":type
-        }];
-    }
-    */
+    console.log(datas);
 
     // Total des revenus
     const incomesTotal: number = getTotalIncomes(datas);

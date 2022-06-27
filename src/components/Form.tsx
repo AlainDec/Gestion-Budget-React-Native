@@ -10,6 +10,8 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 // Realm BDD
 import Realm from "realm";
+import uuid from 'react-native-uuid';
+
 
 // ------- Formulaire
 type FormValues = {
@@ -24,42 +26,8 @@ interface IForm {
     formType: 'income' | 'expense';
 }
 
-// ------- Realm
-/*
-let realm;
-// Déclaration du schéma
-realm = new Realm({
-    path: 'UserDatabase.realm',
-    schema: [
-        {
-            name: "Operation",
-            properties: {
-                name: "string",
-                amount: "string",
-                date: "string",
-                category: "string",
-                comment: "string",
-                operation: "string"
-            }
-        }
-    ]
-})
-realm.write( () => {
-    realm.create('Operation', {
-        name: "Alain Decayeux",
-        amount: "€1,954.61",
-        date: "2022-06-23T15:56:49.861Z",
-        category: "Salaire et assimilé",
-        comment: "et un comment, un !",
-        operation: "income"
-    })
-})
-*/
-
-
-
 export const Form = ({ formType }:IForm) => {
-
+console.log(uuid.v4());
     const validationSchema = Yup.object({
         name: Yup.string().required('Veuillez saisir vos nom et prénom'),
         amount: Yup.number().required('Veuillez saisir un montant'),
@@ -92,26 +60,31 @@ export const Form = ({ formType }:IForm) => {
             path: 'UserDatabase.realm',
             schema: [
                 {
+                    // properties comment : ajout valeur par défaut car si cette propriété
+                    // n'est pas renseignée elle est absente de data
                     name: "Operation",
                     properties: {
-                        name: "string",
+                        //name: "string",
+                        _id: "string",
                         amount: "string",
                         date: "string",
                         category: "string",
                         comment: {type: "string", default: ''},
-                        operation: "string"
+                        type: "string"
                     }
                 }
-            ]
+            ],
+            deleteRealmIfMigrationNeeded: true
         })
         realm.write( () => {
             realm.create('Operation', {
-                name: data.name,
+                //name: data.name,
+                _id: uuid.v4(),
                 amount: numberToCurrency(data.amount.toString()),
                 date: convertDateUtz(data.date),
                 category: data.category,
                 comment: data.comment,
-                operation: data.operation
+                type: data.operation
             })
         })
 
@@ -121,10 +94,14 @@ export const Form = ({ formType }:IForm) => {
         console.log('----user_details----');
         console.log(user_details);
 
+        realm.close();
 
+/*
+        // vider la BDD
         realm.write( () => {
             realm.delete(user_details)
         })
+        */
     }
 
     return (
