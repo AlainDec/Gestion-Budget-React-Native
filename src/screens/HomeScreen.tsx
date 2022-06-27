@@ -1,54 +1,108 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { DataTable } from 'react-native-paper';
 import { data } from '../datas/data';
 import { IIncomesExpenses } from '../interfaces/IData';
 import { date } from 'yup';
 import 'intl';
 import 'intl/locale-data/jsonp/fr';
-import { convertDate, currencyToNumber, numberToCurrency } from '../utils/convert';
+import { convertDate, currencyToNumber, currency2ToNumber, numberToCurrency } from '../utils/convert';
 import { getFilteredDatas, getTotalIncomes, getTotalExpenses } from '../utils/filterDatas';
+import Realm from "realm";
 
 const USER_ID = '18c79361-d05f-437b-9909-685db8d4910a';
+
+// VERSION AVEC FICHIER
 
 // Récupère les données incomes et expenses associées à un user
 // flat l'ensemble et tri par date desc.
 // opération à faire au préalable afin de pouvoir faire 
 // un map final sur ce tableau reconstitué et trié.
-const datas: IIncomesExpenses[] = getFilteredDatas(data, USER_ID);
+//const datas: IIncomesExpenses[] = getFilteredDatas(data, USER_ID);
 
 // Solde, les revenus - les dépenses
-const solde: number = getTotalIncomes(datas) - getTotalExpenses(datas);
+//const solde: number = getTotalIncomes(datas) - getTotalExpenses(datas);
 
 // Les 3 dernières lignes d'opérations
-const lastDatas = datas.slice(0, 4);
+//const lastDatas = datas.slice(0, 4);
+
+
+
+// VERSION AVEC REALM
+
+type FormValues = {
+  _id: string;
+  amount: string;
+  category: string;
+  comment: string;
+  date: string;
+  type: 'income' | 'expense';
+}
+
+// Lecture des données Realm
+const realmRead = new Realm({ path: 'UserDatabase.realm' });
+let income = 0;
+let expense = 0;
+const user_details: FormValues[] = realmRead.objects<FormValues>('Operation')
+    .map(item => {
+      if (item.type === 'income') {
+        income += currency2ToNumber(item.amount);
+      } else if (item.type === 'expense') {
+        expense += currency2ToNumber(item.amount);
+      }
+      return item;
+    })
+    .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+    .splice(0, 4);
+
+// Solde, les revenus - les dépenses
+const solde: number = income - expense;
+
+console.log(user_details);
 
 export const HomeScreen: React.FC<any> = ({ navigation }: any): JSX.Element => {
+
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.accounts}>{numberToCurrency(solde)}</Text>
       </View>
-      <View style={{width: '90%'}}>
+      <View style={{ width: '90%' }}>
         <DataTable style={{ marginTop: 10 }}>
-            <DataTable.Header style={{ backgroundColor: '#ffe3d2' }}>
-                <DataTable.Title>Date</DataTable.Title>
-                <DataTable.Title>Opération</DataTable.Title>
-                <DataTable.Title numeric>Montant</DataTable.Title>
-            </DataTable.Header>
-                {
-                    lastDatas.map((value: IIncomesExpenses, index: number) => {
-                        return (
-                            <DataTable.Row key={index} style={{ backgroundColor: index % 2 === 0 ? '#fefefe' : '#f4f4f4' }}>
-                                <DataTable.Cell>{convertDate(value.date)}</DataTable.Cell>
-                                <DataTable.Cell>{value.category}</DataTable.Cell>
-                                <DataTable.Cell numeric textStyle={{ color: value.type === 'income' ? 'black' : 'red' }}>
-                                    {numberToCurrency(currencyToNumber(value.amount))}
-                                </DataTable.Cell>
-                            </DataTable.Row>
-                        )
-                    })
-                }
+          <DataTable.Header style={{ backgroundColor: '#ffe3d2' }}>
+            <DataTable.Title>Date</DataTable.Title>
+            <DataTable.Title>Opération</DataTable.Title>
+            <DataTable.Title numeric>Montant</DataTable.Title>
+          </DataTable.Header>
+          {
+            //  LECTURE REALM
+            (user_details !== undefined) && user_details.map((value, index) => {
+              return (
+                <DataTable.Row key={value._id} style={{ backgroundColor: index % 2 === 0 ? '#fefefe' : '#f4f4f4' }}>
+                    <DataTable.Cell>{convertDate(value.date)}</DataTable.Cell>
+                    <DataTable.Cell>{value.category}</DataTable.Cell>
+                    <DataTable.Cell numeric textStyle={{ color: value.type === 'income' ? 'black' : 'red' }}>
+                        {value.amount}
+                    </DataTable.Cell>
+                </DataTable.Row>
+            )
+            })
+
+            /* // LECTURE DU FICHIER
+              lastDatas.map((value: IIncomesExpenses, index: number) => {
+                  return (
+                      <DataTable.Row key={index} style={{ backgroundColor: index % 2 === 0 ? '#fefefe' : '#f4f4f4' }}>
+                          <DataTable.Cell>{convertDate(value.date)}</DataTable.Cell>
+                          <DataTable.Cell>{value.category}</DataTable.Cell>
+                          <DataTable.Cell numeric textStyle={{ color: value.type === 'income' ? 'black' : 'red' }}>
+                              {numberToCurrency(currencyToNumber(value.amount))}
+                          </DataTable.Cell>
+                      </DataTable.Row>
+                  )
+              })
+            */
+          }
         </DataTable>
       </View>
       <View style={styles.buttonsContainer}>

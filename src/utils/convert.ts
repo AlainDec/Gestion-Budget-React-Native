@@ -13,6 +13,8 @@ export const numberToCurrency = (price: number): string => euro.format(price);
 // Converti une monnaie string en number (depuis fichier data) : €3,547.91 => 3541.91
 export const currencyToNumber = (currency: string) => Number(currency.replace(/[^0-9.-]+/g, ""));
 
+// Converti une monnaie string en number (depuis BDD Realm) : 3 541,91 € => 3541.91
+export const currency2ToNumber = (currency: string) => Number(currency.replace(/[^0-9,-]+/g, "").replace(',', '.'));
 
 // Formatage des dates : 2021-05-26T01:52:50.288Z => 26/05/2021
 export const convertDate = (date: string): string => moment(date).format("DD/MM/YYYY");

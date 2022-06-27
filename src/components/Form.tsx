@@ -92,6 +92,7 @@ export const Form = ({ formType }: IForm) => {
                 type: data.operation
             })
         })
+        realm.close();
 
         // Lecture des données
         let realmRead = new Realm({ path: 'UserDatabase.realm' });
@@ -99,7 +100,7 @@ export const Form = ({ formType }: IForm) => {
         console.log('----user_details----');
         console.log(user_details);
 
-        realm.close();
+        realmRead.close();
 
         /*
                 // vider la BDD
