@@ -11,6 +11,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 // Realm BDD
 import Realm from "realm";
 import uuid from 'react-native-uuid';
+// Navigation
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { HomeStackScreenParamList } from "../navigation/HomeStack";
 
 
 // ------- Formulaire
@@ -29,7 +33,9 @@ interface IForm {
 
 
 export const Form = ({ formType }: IForm) => {
-    console.log(uuid.v4());
+
+    const navigation = useNavigation<NativeStackNavigationProp<HomeStackScreenParamList>>();
+
     const validationSchema = Yup.object({
         name: Yup.string().required('Veuillez saisir vos nom et prénom'),
         amount: Yup.number().required('Veuillez saisir un montant'),
@@ -92,8 +98,9 @@ export const Form = ({ formType }: IForm) => {
                 type: data.operation
             })
         })
-        realm.close();
+        //realm.close();
 
+        /*
         // Lecture des données
         let realmRead = new Realm({ path: 'UserDatabase.realm' });
         var user_details = realmRead.objects('Operation');
@@ -101,13 +108,16 @@ export const Form = ({ formType }: IForm) => {
         console.log(user_details);
 
         realmRead.close();
+        */
 
         /*
-                // vider la BDD
-                realm.write( () => {
-                    realm.delete(user_details)
-                })
-                */
+        // vider la BDD
+        realm.write( () => {
+            realm.delete(user_details)
+        })
+        */
+
+        navigation.navigate('Résumé');
     }
 
     return (

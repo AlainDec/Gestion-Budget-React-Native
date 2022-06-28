@@ -10,6 +10,7 @@ import 'intl/locale-data/jsonp/fr';
 import { convertDate, currencyToNumber, currency2ToNumber, numberToCurrency } from '../utils/convert';
 import { getFilteredDatas, getTotalIncomes, getTotalExpenses } from '../utils/filterDatas';
 import Realm from "realm";
+import { useIsFocused } from '@react-navigation/native';
 
 const USER_ID = '18c79361-d05f-437b-9909-685db8d4910a';
 
@@ -40,29 +41,47 @@ type FormValues = {
   type: 'income' | 'expense';
 }
 
-// Lecture des données Realm
-const realmRead = new Realm({ path: 'UserDatabase.realm' });
-let income = 0;
-let expense = 0;
-const user_details: FormValues[] = realmRead.objects<FormValues>('Operation')
-    .map(item => {
-      if (item.type === 'income') {
-        income += currency2ToNumber(item.amount);
-      } else if (item.type === 'expense') {
-        expense += currency2ToNumber(item.amount);
-      }
-      return item;
-    })
-    .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
-    .splice(0, 4);
-
-// Solde, les revenus - les dépenses
-const solde: number = income - expense;
-
-console.log(user_details);
 
 export const HomeScreen: React.FC<any> = ({ navigation }: any): JSX.Element => {
 
+  // Lecture des données Realm
+  const realmRead = new Realm({ path: 'UserDatabase.realm' });
+  const [user_details, setUser_details] = useState<(FormValues & Realm.Object)[]>()
+  const [solde,setSolde] = useState<number>(0) 
+  
+  useEffect( () => {
+
+    // Gestion du focus pour rafraichir la page si on revient sur la home
+    const refreshOnFocus = navigation.addListener('focus', () => {
+
+      let income = 0;
+      let expense = 0;
+
+      const datasRealm = realmRead.objects<FormValues>('Operation')
+          .map(item => {
+            if (item.type === 'income') {
+              income += currency2ToNumber(item.amount);
+            } else if (item.type === 'expense') {
+              expense += currency2ToNumber(item.amount);
+            }
+            return item;
+          })
+          .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+          .splice(0, 4);
+    
+      // Solde, les revenus - les dépenses
+      setSolde(income - expense);
+
+      setUser_details(datasRealm)
+    
+      console.log("------user_details------");
+      console.log(user_details);
+    });
+
+    return refreshOnFocus;
+
+  },[navigation]);
+  
   return (
     <View style={styles.container}>
       <View>
@@ -160,7 +179,7 @@ const styles = StyleSheet.create({
   },
   accounts: {
     fontSize: 30,
-    color: solde >= 0 ? 'black' : 'red',
+    color: 'black' ,
     fontWeight: 'bold',
   }
 })
