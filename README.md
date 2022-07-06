@@ -18,7 +18,7 @@ choco install -y nodejs-lts openjdk11
 Vérifier version node :  
 $ node -v
 
-Vérifier version JDK :  
+Vérifier version JDK : (sortir et relancer le shell)  
 $ java -version
 
 Installer Android Studio  
