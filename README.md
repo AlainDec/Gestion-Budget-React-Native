@@ -53,6 +53,7 @@ Pour lancer le projet sur téléphone :
 - connecter le cable, accepté les indications sur le mobile
 Voir si le mobile est bien connecté :  
 > $ adb devices  
+> 
 Lancer l'app :  
 > $ npx react-native run-android
 
@@ -125,6 +126,7 @@ Les exemples sur lesquels je me suis appuyé: https://aboutreact.com/example-of-
 Attention, à l'utilisation de Realm, l'asynchronisation de Await nécessite de modifier tsconfig.json :  
 > "target": "esnext",  
 > "module": "commonjs",
+
 deviennent :  
 > "target": "es2017",  
 > "module": "es2022",
