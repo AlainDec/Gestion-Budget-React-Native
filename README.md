@@ -6,10 +6,10 @@ INSTALLATION
 https://reactnative.dev/docs/environment-setup
 
 installer chocolatey : https://chocolatey.org/install#individual  
-pour cela il faut installer powershell, qui vérifie les soures provenant d'internet
+pour cela il faut installer powershell, qui vérifie les sources provenant d'internet
 https://github.com/PowerShell/PowerShell/releases/tag/v7.2.4  
-revenir sur chocolatey, taper ligne de commande :
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+Revenir sur chocolatey, taper ligne de commande :
+> Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
 retour sur https://reactnative.dev/docs/environment-setup  
 installer nodeJs et JDK11  
