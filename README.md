@@ -46,6 +46,7 @@ Pour lancer le projet sur émulateur :
 puis en ligne de commande :  
 > $ npx react-native start  
 > $ npx react-native run-android  
+
 On peut fermer android studio, l'émulateur est lancé.
 
 Pour lancer le projet sur téléphone :  
