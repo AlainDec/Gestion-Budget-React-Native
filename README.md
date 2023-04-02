@@ -6,9 +6,9 @@ INSTALLATION
 https://reactnative.dev/docs/environment-setup
 
 installer chocolatey : https://chocolatey.org/install#individual  
-pour cela il faut installer powershell, qui vérifie les sources provenant d'internet
+Pour cela il faut installer powershell, qui vérifie les sources provenant d'internet
 https://github.com/PowerShell/PowerShell/releases/tag/v7.2.4  
-Revenir sur chocolatey, taper ligne de commande :
+Revenir sur chocolatey, taper ligne de commande :  
 `Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))`
 
 retour sur https://reactnative.dev/docs/environment-setup  
@@ -19,24 +19,24 @@ Vérifier version node :
 `node -v`  
 
 Vérifier version JDK : (sortir et relancer le shell)  
-`$ java -version`  
+`java -version`  
 
 Installer Android Studio  
 Configurer variables d'environnement :(variable système)  
-ANDROID_HOME : C:\Users\Geogalion\AppData\Local\Android\Sdk
+`ANDROID_HOME : C:\Users\Geogalion\AppData\Local\Android\Sdk`  
 
 Ouvrir un nouveau powershell et vérifier que la variable ANDROID_HOME est présente :  
-`$ Get-ChildItem -Path Env:\`  
+`Get-ChildItem -Path Env:\`  
 
 Ajouter dans le path des variables windows :  
-%LOCALAPPDATA%\Android\Sdk\platform-tools
+`%LOCALAPPDATA%\Android\Sdk\platform-tools`  
 
 Créer le projet  
-`px react-native init p16GestionBudget --template react-native-template-typescript  
-`cd p16GestionBudget  
+`px react-native init p16GestionBudget --template react-native-template-typescript`  
+`cd p16GestionBudget`  
 
 Lancer le projet  
-`$ npx react-native run-android  
+`npx react-native run-android`  
 
 Si erreur sur chemin de JAVA_HOME, le corriger, fermer powershell et relancer la ligne de commande.  
 Si problème d'espace mémoire VM, le plus simple est de supprimer Java. Vérifier aussi les mises à jour Windows  
@@ -44,8 +44,8 @@ Si problème d'espace mémoire VM, le plus simple est de supprimer Java. Vérifi
 Pour lancer le projet sur émulateur :  
 - lancer android studio, créer un device qu'on choisi, et l'exécuter
 puis en ligne de commande :  
-`$ npx react-native start`  
-`$ npx react-native run-android` 
+`npx react-native start`  
+`npx react-native run-android` 
 
 On peut fermer android studio, l'émulateur est lancé.
 
@@ -76,7 +76,7 @@ module.exports = {
 
 navigations avec la barre en bas  
 `npm install @react-navigation/bottom-tabs`  
-`$ npm install --save react-native-vector-icons` 
+`npm install --save react-native-vector-icons` 
 
 Choisir une icône : https://ionic.io/ionicons ou encore pour plus de choix : https://oblador.github.io/react-native-vector-icons/  
 Problèmes de compilation, ajout des installations suivantes :
@@ -102,7 +102,7 @@ Gestion des règles de validations des formulaires avec YUP
 `npm i yup`  
 
 Yup a besoin d'un resolver et donc de sa librairie :  
-`$ npm install @hookform/resolvers`  
+`npm install @hookform/resolvers`  
 
 Ajout du datepicker pour saisir la date des opérations  
 `npm i @react-native-community/datetimepicker`  
